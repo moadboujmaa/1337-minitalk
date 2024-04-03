@@ -6,30 +6,32 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 10:16:38 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/02 09:44:32 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:42:06 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	send_bits(t_data data)
+t_data	g_data;
+
+void	send_bits(void)
 {
 	int				i;
-	unsigned char	bit;
-	char			*str;
+	int				bit;
+	const char		*str; 
 
-	str = data.text;
+	str = g_data.text;
 	while (*str)
 	{
 		i = 7;
 		while (i >= 0)
 		{
-			bit = (*str >> i & 1) + '0';
-			if (bit == '0')
-				kill(data.server_id, SIGUSR1);
+			bit = *str >> i & 1;
+			if (bit == 0)
+				kill(g_data.server_id, SIGUSR1);
 			else
-				kill(data.server_id, SIGUSR2);
-			usleep(150000);
+				kill(g_data.server_id, SIGUSR2);
+			usleep(150);
 			i--;
 		}
 		str++;
@@ -38,13 +40,11 @@ void	send_bits(t_data data)
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
-
 	if (argc == 3)
 	{
-		data.server_id = ft_atoi(argv[1]);
-		data.text = argv[2];
-		send_bits(data);
+		g_data.server_id = ft_atoi(argv[1]);
+		g_data.text = argv[2];
+		send_bits();
 	}
 	else
 		ft_putstr_fd("Executed like this: ./client <pid> <text>", 2);

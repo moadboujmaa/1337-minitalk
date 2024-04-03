@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 10:37:52 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/02 08:44:45 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:11:15 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@
 # include "./libft/libft.h"
 
 typedef struct s_data {
-	char	*text;
-	int		server_id;
+	char		*text;
+	int			text_index;
+	int			server_id;
+	int			client_id;
+	int			index;
 }	t_data;
 
 #endif
