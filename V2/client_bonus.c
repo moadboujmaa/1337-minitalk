@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/01 10:16:38 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/04 15:09:26 by mboujama         ###   ########.fr       */
+/*   Created: 2024/04/04 17:13:12 by mboujama          #+#    #+#             */
+/*   Updated: 2024/04/04 17:41:18 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
 t_data	g_data;
+
+void	sighandler(int sig)
+{
+	if (sig == SIGUSR1)
+	{
+		ft_printf("Message received successfully\n");
+		exit(0);
+	}
+}
 
 void	send_len(int len)
 {
@@ -62,7 +71,11 @@ int	main(int argc, char **argv)
 	{
 		g_data.server_id = ft_atoi(argv[1]);
 		g_data.text = argv[2];
+		signal(SIGUSR1, sighandler);
 		send_bits();
+		while (1)
+			pause();
+		
 	}
 	else
 		ft_putstr_fd("Executed like this: ./client <pid> <text>", 2);

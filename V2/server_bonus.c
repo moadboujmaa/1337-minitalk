@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 10:16:57 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/04 17:10:43 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:16:53 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ void	sighandler(int sig, siginfo_t *info, void *context)
 			g_data.index = 0;
 		}
 		if (g_data.text_index == g_data.len)
+		{
 			ft_printf("%s\n", g_data.text_received);
+			kill(g_data.client_id, SIGUSR1);
+		}
 	}
 }
 
