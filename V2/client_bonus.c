@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 17:13:12 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/04 17:41:18 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/06 09:41:02 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	main(int argc, char **argv)
 		send_bits();
 		while (1)
 			pause();
-		
 	}
 	else
 		ft_putstr_fd("Executed like this: ./client <pid> <text>", 2);
