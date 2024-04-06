@@ -6,7 +6,7 @@
 /*   By: mboujama <mboujama@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 16:02:22 by mboujama          #+#    #+#             */
-/*   Updated: 2024/04/04 17:11:16 by mboujama         ###   ########.fr       */
+/*   Updated: 2024/04/06 14:25:59 by mboujama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 void	alloc_text(t_data *g_data, int len)
 {
-	g_data->text_received = (char *) malloc(len);
+	g_data->text_received = (char *) malloc(len + 1);
+	if (!g_data->text_received)
+		exit(1);
+	g_data->text_received[len] = '\0';
 	g_data->is_allocated = 1;
 }
 

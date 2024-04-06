@@ -16,7 +16,6 @@ $(NAME) : $(OBJ)
 
 clean :
 	@rm -f $(OBJ) $(BOBJ)
-	@echo "\033[33mLibft object files removed\033[0m"
 
 fclean : clean
 	@rm -f $(NAME)
